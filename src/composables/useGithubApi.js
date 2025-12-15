@@ -59,15 +59,17 @@ export function useGithubApi() {
     error.value = null
 
     try {
-      // 编码为 base64
-      const encodedContent = btoa(unescape(encodeURIComponent(content)))
+      // 编码为 base64 (使用 TextEncoder for proper UTF-8 encoding)
+      const encoder = new TextEncoder()
+      const data = encoder.encode(content)
+      const base64 = btoa(String.fromCharCode(...data))
 
       const response = await fetch(getApiUrl(path), {
         method: 'PUT',
         headers: getHeaders(),
         body: JSON.stringify({
           message: message || 'Update file',
-          content: encodedContent,
+          content: base64,
           sha: sha,
           branch: config.branch
         })
@@ -93,14 +95,17 @@ export function useGithubApi() {
     error.value = null
 
     try {
-      const encodedContent = btoa(unescape(encodeURIComponent(content)))
+      // 编码为 base64 (使用 TextEncoder for proper UTF-8 encoding)
+      const encoder = new TextEncoder()
+      const data = encoder.encode(content)
+      const base64 = btoa(String.fromCharCode(...data))
 
       const response = await fetch(getApiUrl(path), {
         method: 'PUT',
         headers: getHeaders(),
         body: JSON.stringify({
           message: message || 'Create file',
-          content: encodedContent,
+          content: base64,
           branch: config.branch
         })
       })

@@ -33,7 +33,7 @@
 </template>
 
 <script setup>
-import { ref, watch } from 'vue'
+import { ref, watch, onMounted, onUnmounted } from 'vue'
 
 const props = defineProps({
   images: {
@@ -48,10 +48,10 @@ const props = defineProps({
 
 const emit = defineEmits(['close'])
 
-const index = ref(props.currentIndex)
+const currentIndex = ref(props.currentIndex)
 
 watch(() => props.currentIndex, (newIndex) => {
-  index.value = newIndex
+  currentIndex.value = newIndex
 })
 
 const getImageUrl = (path) => {
@@ -61,14 +61,14 @@ const getImageUrl = (path) => {
 }
 
 const prev = () => {
-  if (index.value > 0) {
-    index.value--
+  if (currentIndex.value > 0) {
+    currentIndex.value--
   }
 }
 
 const next = () => {
-  if (index.value < props.images.length - 1) {
-    index.value++
+  if (currentIndex.value < props.images.length - 1) {
+    currentIndex.value++
   }
 }
 
@@ -79,10 +79,14 @@ const handleKeydown = (e) => {
   if (e.key === 'Escape') emit('close')
 }
 
-// 添加键盘监听
-if (typeof window !== 'undefined') {
+// 生命周期管理键盘监听
+onMounted(() => {
   window.addEventListener('keydown', handleKeydown)
-}
+})
+
+onUnmounted(() => {
+  window.removeEventListener('keydown', handleKeydown)
+})
 </script>
 
 <style scoped>

@@ -106,11 +106,12 @@ const handleDelete = () => {
 }
 
 const openGallery = (index) => {
+  // Note: Gallery functionality would be triggered via parent component
+  // This is a placeholder for future implementation via emit
   const images = []
   if (props.visit.mainImage) images.push(props.visit.mainImage)
   if (props.visit.subImages) images.push(...props.visit.subImages)
-  // TODO: 触发打开画廊
-  console.log('Open gallery at index:', index, images)
+  console.log('Gallery click:', index, images)
 }
 </script>
 
