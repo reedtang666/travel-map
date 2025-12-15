@@ -1,0 +1,18 @@
+{
+  "name": "travel-map",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Family travel footprint map website based on Vue 3 and Amap",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "vue": "^3.4.21"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.0.4",
+    "vite": "^5.2.0"
+  }
+}
