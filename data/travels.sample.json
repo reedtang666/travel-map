@@ -1,0 +1,65 @@
+{
+  "visits": [
+    {
+      "id": "visit_1704100800000_abc123def",
+      "cityName": "北京",
+      "coordinates": [116.407526, 39.904030],
+      "visitDate": "2024-05-01",
+      "description": "游览了天安门广场、故宫博物院和长城。天气晴朗，景色壮观！",
+      "mainImage": "images/1704100800000_beijing-main.jpg",
+      "subImages": [
+        "images/1704100801000_beijing-1.jpg",
+        "images/1704100802000_beijing-2.jpg"
+      ],
+      "markerStyle": "📌",
+      "createdAt": "2024-05-02T10:30:00.000Z",
+      "updatedAt": "2024-05-02T10:30:00.000Z"
+    },
+    {
+      "id": "visit_1704187200000_xyz789ghi",
+      "cityName": "上海",
+      "coordinates": [121.473701, 31.230416],
+      "visitDate": "2024-06-15",
+      "description": "外滩夜景非常美丽，东方明珠塔和城隍庙都值得一去！",
+      "mainImage": "images/1704187200000_shanghai-main.jpg",
+      "subImages": [
+        "images/1704187201000_shanghai-1.jpg"
+      ],
+      "markerStyle": "⭐",
+      "createdAt": "2024-06-16T14:20:00.000Z",
+      "updatedAt": "2024-06-16T14:20:00.000Z"
+    },
+    {
+      "id": "visit_1704273600000_mno456pqr",
+      "cityName": "杭州",
+      "coordinates": [120.153576, 30.287459],
+      "visitDate": "2024-07-20",
+      "description": "西湖十景，美不胜收。雷峰塔上俯瞰西湖全景，令人心旷神怡。",
+      "mainImage": "images/1704273600000_hangzhou-main.jpg",
+      "subImages": [],
+      "markerStyle": "❤️",
+      "createdAt": "2024-07-21T09:15:00.000Z",
+      "updatedAt": "2024-07-21T09:15:00.000Z"
+    }
+  ],
+  "wishlist": [
+    {
+      "id": "wish_1704360000000_stu123vwx",
+      "cityName": "西藏拉萨",
+      "coordinates": [91.132212, 29.660361],
+      "note": "想去看布达拉宫和纳木错，体验西藏的神圣与壮美。",
+      "createdAt": "2024-01-01T08:00:00.000Z"
+    },
+    {
+      "id": "wish_1704446400000_aaa111bbb",
+      "cityName": "云南丽江",
+      "coordinates": [100.233026, 26.872108],
+      "note": "古城风情和玉龙雪山都很吸引人，想去感受纳西文化。",
+      "createdAt": "2024-02-15T10:30:00.000Z"
+    }
+  ],
+  "settings": {
+    "defaultMarkerStyle": "📌",
+    "homeLocation": [116.407526, 39.904030]
+  }
+}
