@@ -38,7 +38,8 @@
 
 <script setup>
 import { ref, watch } from 'vue'
-import { uploadImage, compressImage } from '../utils/helpers'
+import { compressImage } from '../utils/helpers'
+import { useGithubApi } from '../composables/useGithubApi'
 
 const props = defineProps({
   modelValue: {
@@ -51,10 +52,14 @@ const props = defineProps({
   }
 })
 
-const emit = defineEmits(['update:modelValue'])
+const emit = defineEmits(['update:modelValue', 'upload-error'])
 
 const fileInput = ref(null)
 const previewImages = ref([])
+const uploadError = ref(null)
+
+// 使用 composable
+const { uploadImage } = useGithubApi()
 
 // 初始化预览图片
 watch(() => props.modelValue, (newVal) => {
@@ -73,6 +78,8 @@ const triggerFileInput = () => {
 const handleFileSelect = async (event) => {
   const files = Array.from(event.target.files)
   await processFiles(files)
+  // 清空 input 以便可以重复选择相同文件
+  event.target.value = ''
 }
 
 const handleDrop = async (event) => {
@@ -91,13 +98,15 @@ const processFiles = async (files) => {
     }
 
     try {
+      uploadError.value = null
+      
       // 压缩图片
       const compressedBlob = await compressImage(file)
       
-      // 创建预览
+      // 创建预览（本地临时URL）
       const url = URL.createObjectURL(compressedBlob)
       
-      // 上传图片
+      // 上传图片到 GitHub
       const imagePath = await uploadImage(compressedBlob, file.name)
       
       previewImages.value.push({
@@ -109,7 +118,9 @@ const processFiles = async (files) => {
       updateValue()
     } catch (error) {
       console.error('图片处理失败:', error)
-      alert('图片上传失败，请重试')
+      uploadError.value = error.message || '图片上传失败'
+      emit('upload-error', error.message || '图片上传失败')
+      alert('图片上传失败，请检查 GitHub 配置或网络连接')
     }
   }
 }

@@ -26,8 +26,8 @@ jobs:
       - name: Check for changes
         id: check_changes
         run: |
-          git fetch origin
-          if git diff --quiet origin/main; then
+          git status
+          if git diff --quiet && git diff --cached --quiet; then
             echo "has_changes=false" >> $GITHUB_OUTPUT
           else
             echo "has_changes=true" >> $GITHUB_OUTPUT

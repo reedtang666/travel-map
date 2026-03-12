@@ -65,7 +65,7 @@ const props = defineProps({
   }
 })
 
-const emit = defineEmits(['edit', 'delete', 'close'])
+const emit = defineEmits(['edit', 'delete', 'close', 'open-gallery'])
 
 const hasImages = computed(() => {
   return props.visit.mainImage || (props.visit.subImages && props.visit.subImages.length > 0)
@@ -106,12 +106,10 @@ const handleDelete = () => {
 }
 
 const openGallery = (index) => {
-  // Note: Gallery functionality would be triggered via parent component
-  // This is a placeholder for future implementation via emit
   const images = []
   if (props.visit.mainImage) images.push(props.visit.mainImage)
   if (props.visit.subImages) images.push(...props.visit.subImages)
-  console.log('Gallery click:', index, images)
+  emit('open-gallery', images, index)
 }
 </script>
 

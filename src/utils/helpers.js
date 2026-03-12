@@ -1,5 +1,4 @@
 import { useAmap } from '../composables/useAmap'
-import { useGithubApi } from '../composables/useGithubApi'
 
 // 搜索城市
 export async function searchCity(keyword) {
@@ -68,15 +67,11 @@ export async function compressImage(file, maxWidth = 1920, maxHeight = 1080, qua
 }
 
 // 上传图片
+// 注意：此函数已废弃，请直接在组件中使用 useGithubApi composable
+// 保留此函数仅为兼容性，内部抛出错误提示
 export async function uploadImage(blob, filename) {
-  try {
-    const { uploadImage: upload } = useGithubApi()
-    const path = await upload(blob, filename)
-    return path
-  } catch (error) {
-    console.error('图片上传失败:', error)
-    throw error
-  }
+  console.warn('uploadImage in helpers.js is deprecated. Please use useGithubApi composable directly in components.')
+  throw new Error('uploadImage is deprecated. Use useGithubApi composable directly.')
 }
 
 // 格式化日期

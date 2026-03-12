@@ -31,6 +31,7 @@
           @edit="handleEdit"
           @delete="handleDelete"
           @close="closeSidebar"
+          @open-gallery="openGallery"
         />
 
         <!-- 添加/编辑表单 -->
