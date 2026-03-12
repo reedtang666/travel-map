@@ -18,6 +18,12 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      VITE_AMAP_KEY: ${{ secrets.VITE_AMAP_KEY }}
+      VITE_GITHUB_TOKEN: ${{ secrets.VITE_GITHUB_TOKEN }}
+      VITE_GITHUB_OWNER: ${{ github.repository_owner }}
+      VITE_GITHUB_REPO: ${{ github.event.repository.name }}
+      VITE_GITHUB_BRANCH: main
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -33,12 +39,6 @@ jobs:
 
       - name: Build
         run: npm run build
-        env:
-          VITE_AMAP_KEY: ${{ secrets.VITE_AMAP_KEY }}
-          VITE_GITHUB_TOKEN: ${{ secrets.VITE_GITHUB_TOKEN }}
-          VITE_GITHUB_OWNER: ${{ github.repository_owner }}
-          VITE_GITHUB_REPO: ${{ github.event.repository.name }}
-          VITE_GITHUB_BRANCH: main
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
